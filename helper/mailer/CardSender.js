@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const fs = require("fs")
+const path = require("path")
 
 let transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -13,8 +14,9 @@ let transporter = nodemailer.createTransport({
 
 module.exports = {
   sendEmail: (EmailAddress, StudentName, Card) => {
+    const htmlFilePath = path.join(__dirname, 'html', 'CardSender.html');
     const htmlContent = fs.readFileSync(
-      "/home/almuhidat/Desktop/work/student-card-generator-nodejs/helper/mailer/html/CardSender.html",
+      htmlFilePath,
       'utf8'
     )
     .replace("[Student Name]", StudentName)

@@ -1,0 +1,10 @@
+{
+	"formatVersion": 1,
+	"passTypeIdentifier": "pass.com.digitalcard.roomkeyplus",
+	"teamIdentifier": "U2MH7QQ6YQ",
+	"serialNumber": "XD",
+	"foregroundColor": "rgb(0,0,0)",
+	"backgroundColor": "rgb(255,255,255)",
+	"labelColor": "rgb(0,0,0)",
+	"storeCard": {}
+}

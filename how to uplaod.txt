@@ -1,0 +1,4 @@
+ibmcloud login
+ibmcloud cr login
+docker build -t us.icr.io/student-card-generator/student-card-generator-backend .
+docker push us.icr.io/student-card-generator/student-card-generator-backend

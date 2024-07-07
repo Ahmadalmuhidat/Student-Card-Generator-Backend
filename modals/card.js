@@ -1,7 +1,6 @@
 const { PKPass } = require('passkit-generator');
-const jwt = require('jsonwebtoken');
 const mailer = require("../helper/mailer/CardSender")
-const fs = require("fs")
+const fs = require("fs");
 
 module.exports = {
   generateCard: async (req, res) => {
@@ -21,11 +20,16 @@ module.exports = {
       },
     }, {
       organizationName: "KAUST",
-      description: "KAUST Digital Card"
+      description: "IABFU Digital Card"
     });
 
+    const message = {
+      StudentID: StudentID,
+      Provider: "TimeWizeAI"
+    }
+
     DigitalPass.setBarcodes({
-      "message": StudentID,
+      "message":  JSON.stringify(message),
       "format": "PKBarcodeFormatQR",
       "messageEncoding": "iso-8859-1"
     })
@@ -47,16 +51,6 @@ module.exports = {
     const buffer = DigitalPass.getAsBuffer();
 
     mailer.sendEmail(email, StudentName, buffer)
-
-    // res.setHeader(
-    //   'Content-Type',
-    //   'application/vnd.apple.pkpass'
-    // );
-    // res.setHeader(
-    //   'Content-Disposition',
-    //   'attachment; filename=test.pkpass'
-    // );
-    // res.send(buffer);
     res.send(true)
   }
 }
